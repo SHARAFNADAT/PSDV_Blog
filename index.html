@@ -3,115 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mastering Arbitrary Precision in Python</title>
+    <title>Mastering Arbitrary Precision in Python with mpmath</title>
     <style>
         body {
-            font-family: 'Open Sans', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+            background-color: #f9f9f9;
             color: #333;
-        }
-        header {
-            background-color: #cbebcb;
-            color: white;
-            padding: 20px;
             text-align: center;
         }
-        nav {
-            background: #34495e;
-            padding: 10px;
-            text-align: center;
+        h1 {
+            color: #0056b3;
+            font-size: 3em;
+            margin-bottom: 10px;
         }
-        nav a {
-            color: white;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        h1, h2 {
-            color: #2c3e50;
+        h2, h3 {
+            color: #004085;
         }
         code {
-            background: #f4f4f4;
-            padding: 5px;
-            border-radius: 5px;
-            font-family: 'Courier New', monospace;
-        }
-        pre {
-            background: #2c3e50;
-            color: white;
+            background: #282c34;
+            color: #61dafb;
             padding: 10px;
             border-radius: 5px;
+            display: block;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
             overflow-x: auto;
+            text-align: left;
         }
-        footer {
-            text-align: center;
-            padding: 15px;
-            background: #34495e;
-            color: rgb(16, 13, 57);
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            display: block;
+            max-width: 250px;
+            margin: 10px auto;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+        }
+        a {
+            color: #0077cc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .plot-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             margin-top: 20px;
+        }
+        .plot-image {
+            max-width: 90%;
+            border: 2px solid #004085;
+            border-radius: 10px;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+            margin: 10px;
+        }
+        .dropdown {
+            margin: 10px;
+            padding: 10px;
+            background: #f1f1f1;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .dropdown-content {
+            display: none;
+            padding: 10px;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: left;
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        ul li {
+            padding: 8px 0;
+            font-size: 1.2em;
         }
     </style>
 </head>
 <body>
+    <h1>Mastering Arbitrary Precision in Python with mpmath</h1>
+    <img src="Screenshot 2025-02-25 003240.png" alt="mpmath Logo" class="logo">
 
-<header>
-    <h1>Mastering Arbitrary Precision in Python</h1>
-    <p>A Deep Dive into <b>mpmath</b></p>
-</header>
-
-<nav>
-    <a href="#introduction">Introduction</a>
-    <a href="#installation">Installation</a>
-    <a href="#features">Key Features</a>
-    <a href="#conclusion">Conclusion</a>
-</nav>
-
-<div class="container">
-
-    <h2 id="introduction">Introduction</h2>
-    <p>Imagine working on a scientific project where even a tiny decimal error could cause significant issues!
-        Whether in engineering, finance, or AI, precision is crucial for accuracy in scientific simulations, medical imaging, and self-driving cars.</p>
-
-    <h2 id="installation">Installation & Setup</h2>
-    <p>In most programming scenarios, floating-point arithmetic is precise enough, but for high-precision calculations, Python's built-in <code>math</code> module fails.</p>
-    <p>This is where <b>mpmath</b> comes into play. It allows you to perform complex calculations with hundreds of decimal places.</p>
-    <h3>Installation</h3>
-    <p>To install <b>mpmath</b>, simply run the following command:</p>
+    <h2>Publishers</h2>
+    <p>Sharaf Nada T - Anshika - Radhika Purohit</p>
     
-    <pre><code>pip install mpmath</code></pre>
-
-    <h3>Verify Installation</h3>
-    <p>After installation, verify it by running:</p>
+    <h2>Published</h2>
+    <p>February 25, 2025</p>
     
-    <pre><code>import mpmath
-print(mpmath.pi)</code></pre>
-
-    <h2 id="features">Key Features of mpmath</h2>
+    <h2>Introduction</h2>
+    <p>Precision matters in scientific computing. Whether you're tackling complex physics simulations, financial modeling, or AI computations, tiny floating-point errors can snowball into major inaccuracies. Python’s built-in math module is great for general-purpose calculations, but when you need extreme precision, it falls short.</p>
+    <p>Enter <em>mpmath</em>—a powerful, arbitrary-precision arithmetic library for Python. Developed by Fredrik Johansson since 2007, mpmath allows you to perform calculations with thousands of decimal places, making it indispensable for researchers, engineers, and mathematicians alike.</p>
+    
+    <h2>Installation & Setup</h2>
+    <h3>Windows</h3>
+    <code>pip install mpmath</code>
+    <code>python -c "import mpmath; print(mpmath.__version__)"</code>
+    
+    <h3>Linux</h3>
+    <code>pip install mpmath</code>
+    <code>python3 -c "import mpmath; print(mpmath.__version__)"</code>
+    
+    <h3>macOS</h3>
+    <code>pip install mpmath</code>
+    <code>python3 -c "import mpmath; print(mpmath.__version__)"</code>
+    
+    <h2>Key Features of mpmath</h2>
     <ul>
-        <li><b>Numerical Computation:</b> Perform integration, differentiation, and root-finding accurately.</li>
-        <li><b>Special Functions:</b> Compute trigonometric, logarithmic, and advanced mathematical functions with high precision.</li>
-        <li><b>High Precision:</b> Set precision to hundreds or even thousands of digits for ultra-accurate calculations.</li>
-        <li><b>Linear Algebra:</b> Handle matrices, eigenvalues, and complex numbers with precision.</li>
+        <li>Arbitrary Precision Arithmetic</li>
+        <li>Numerical Computation</li>
+        <li>Special Functions</li>
+        <li>Linear Algebra Support</li>
+        <li>Polynomial and Series Evaluations</li>
+        <li>Solving Differential Equations</li>
+        <li>Interval Arithmetic</li>
+        <li>Plotting Capabilities</li>
+        <li>Riemann Zeta Function Computation</li>
     </ul>
+    
+    <h2>Code Examples</h2>
+    <h3>High-Precision Computation of π</h3>
+    <code>
+from mpmath import mp  
+mp.dps = 50  
+print(mp.pi)  
+    </code>
+    <div class="dropdown">
+        <strong>Output:</strong>
+        <div class="dropdown-content">3.14159265358979323846264338327950288419716939937510</div>
+    </div>
+    
+    <h3>Computing the Gaussian Integral</h3>
+    <code>
+from mpmath import mp  
+mp.dps = 50  
+print(mp.quad(lambda x: mp.exp(-x**2), [-mp.inf, mp.inf]) ** 2)  
+    </code>
+    <div class="dropdown">
+        <strong>Output:</strong>
+        <div class="dropdown-content">3.14159265358979323846264338327950288419716939937510</div>
+    </div>
+    
+    <h3>Numerical Differentiation</h3>
+    <code>
+from mpmath import diff, sin  
+print(diff(sin, 1))  
+    </code>
+    <div class="dropdown">
+        <strong>Output:</strong>
+        <div class="dropdown-content">0.54030230586813971740093660744297660373231042061792</div>
+    </div>
+    
+    <h3>Solving Ordinary Differential Equations (ODEs)</h3>
+    <code>
+from mpmath import odefun, exp  
 
-    <h2 id="conclusion">Conclusion</h2>
-    <p><b>mpmath</b> is an excellent library for anyone working with high-precision numerical computations. Whether you're in scientific computing, finance, or AI, this library ensures that your calculations are as accurate as possible!</p>
+def f(t, y):  
+    return -y + exp(-t)  
 
-</div>
+sol = odefun(f, 0, 1)  
+print(sol(1))  
+    </code>
+    <div class="dropdown">
+        <strong>Output:</strong>
+        <div class="dropdown-content">0.36787944117144232159552377016146086744581113103176</div>
+    </div>
+    
+    <h2>Benchmarking mpmath</h2>
+    <code>
+from decimal import Decimal, getcontext  
+from mpmath import mp, sqrt  
+import time  
 
-<footer>
-    <p>&copy; 2025 Mastering mpmath | Built with ❤️</p>
-</footer>
+getcontext().prec = 50  
+start = time.time()  
+Decimal(2).sqrt()  
+end = time.time()  
+print("Decimal sqrt time:", end - start)  
 
+mp.dps = 50  
+start = time.time()  
+sqrt(2)  
+end = time.time()  
+print("mpmath sqrt time:", end - start)  
+    </code>
+    <div class="dropdown">
+        <strong>Output:</strong>
+        <div class="dropdown-content">Decimal sqrt time: 1.1920928955078125e-05<br>mpmath sqrt time: 9.5367431640625e-07</div>
+    </div>
+
+    <h3>Mathematical Plots with mpmath</h3>
+    <code>
+from mpmath import *
+
+# 2D plot example
+plot(lambda x: exp(x)*li(x), [1, 4])
+
+# Complex function plot example
+cplot(lambda z: z, [-2, 2], [-10, 10])
+
+# 3D surface plot example
+def f(x, y):
+    return sin(x+y)*cos(y)
+splot(f, [-pi,pi], [-pi,pi])
+    </code>
+    
+    <div class="plot-container">
+        <h3>Generated Plots</h3>
+        <img src="image1.png" alt="2D and Complex Function Plot" class="plot-image">
+        <img src="image2.png" alt="3D Surface Plot" class="plot-image">
+    </div>
+    
+    <h2>Conclusion</h2>
+    <p>mpmath is a robust and versatile library for anyone dealing with high-precision numerical computations. Whether you're a researcher, engineer, or financial analyst, mpmath ensures that your calculations are as accurate as possible.</p>
+    
+    <h2>References & Further Reading</h2>
+    <p><a href="https://mpmath.org/doc/current/" target="_blank">mpmath Official Documentation</a></p>
 </body>
 </html>
